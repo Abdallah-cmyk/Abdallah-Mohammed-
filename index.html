@@ -3,441 +3,1961 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كتالوج منتجات الأجنحة الذهبية</title>
-    <!-- Chosen Palette: Professional Teal and Indigo -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <title>الأجنحة الذهبية - شريكك الاستراتيجي في توريد الأغذية العالمية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: #f0f4f8;
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --teal: #0d9488;
+            --gold: #D4AF37;
+            --gold-light: #FFD700;
+            --gold-dark: #B8860B;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --teal-gradient: linear-gradient(135deg, var(--teal) 0%, #115e59 100%);
+            --gold-gradient: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
+        
         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Tajawal', sans-serif;
         }
-        .product-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer; 
-            border: 1px solid #e0e7ff; /* Light blue border for professionalism */
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
         }
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(23, 37, 84, 0.18); /* Deeper shadow on hover */
+        
+        body {
+            background-color: #f9fafb;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        /* Custom WhatsApp float button for better aesthetics */
-        .whatsapp-float {
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
             position: fixed;
-            bottom: 24px;
-            left: 24px;
+            top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            box-shadow: 0 6px 16px rgba(18, 140, 126, 0.5);
-            animation: pulse 2s infinite;
+            transition: var(--transition);
         }
-        @keyframes pulse {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.08) rotate(-1deg); }
-            100% { transform: scale(1) rotate(0deg); }
+        
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
         }
-        .line-clamp-3 {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--teal);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            margin-left: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 0.8rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--teal);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: var(--teal-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(13, 148, 136, 0.4);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--teal);
+            color: var(--teal);
+            background: transparent;
+            margin-left: 0.8rem;
+        }
+        
+        .btn-outline:hover {
+            background: var(--teal);
+            color: white;
+        }
+        
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: var(--teal-gradient);
+            color: white;
+            position: relative;
             overflow: hidden;
         }
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="rgba(255,255,255,0.1)"></path></svg>');
+            background-size: cover;
+            background-position: center;
         }
-        .modal {
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
         }
-        .modal-content {
-            transition: transform 0.3s ease-out;
+        
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
         }
-        #more-info-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
         }
-        #more-info-content.expanded {
-            max-height: 800px;
-            padding-top: 1.5rem;
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            animation: float 6s ease-in-out infinite;
         }
-
-        /* Desktop Layout: Main container for sidebar and products */
-        @media (min-width: 1024px) {
-            .main-content-wrapper {
-                display: grid;
-                grid-template-columns: 280px 1fr; /* Sidebar width and Product area */
-                gap: 2rem;
-            }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
-        .filter-button.active {
-            background-color: #0d9488; /* Teal-600 */
+        
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Custom Logo Design */
+        .logo-3d {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .logo-wings {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .wing {
+            position: absolute;
+            width: 100px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+            border-radius: 50px 50px 10px 10px;
+            transform-origin: bottom center;
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.2),
+                inset 0 -5px 10px rgba(255, 255, 255, 0.3),
+                inset 0 5px 10px rgba(0, 0, 0, 0.1);
+            animation: wing-flap 4s ease-in-out infinite;
+        }
+        
+        .wing-left {
+            transform: rotate(-30deg);
+            left: 80px;
+            animation-delay: 0.2s;
+        }
+        
+        .wing-right {
+            transform: rotate(30deg);
+            right: 80px;
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes wing-flap {
+            0%, 100% { transform: rotate(-30deg) translateY(0); }
+            50% { transform: rotate(-25deg) translateY(-5px); }
+        }
+        
+        @keyframes wing-flap-right {
+            0%, 100% { transform: rotate(30deg) translateY(0); }
+            50% { transform: rotate(25deg) translateY(-5px); }
+        }
+        
+        .wing-right {
+            animation-name: wing-flap-right;
+        }
+        
+        .logo-center {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--gold-light) 0%, var(--gold) 70%, var(--gold-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 5px 10px rgba(255, 255, 255, 0.4),
+                inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        
+        .logo-center::before {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+        
+        .logo-text {
+            position: absolute;
+            bottom: 30px;
+            text-align: center;
+            width: 100%;
             color: white;
             font-weight: 700;
-            box-shadow: 0 4px 10px rgba(13, 148, 136, 0.4);
+            font-size: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
-        /* Style for the select dropdown */
-        .custom-select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236B7280'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: left 0.75rem center;
-            background-size: 1.5em 1.5em;
+        
+        .feather {
+            position: absolute;
+            width: 15px;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+            border-radius: 8px;
+            transform-origin: top center;
+            opacity: 0.7;
+        }
+        
+        .feather-1 {
+            top: 30px;
+            left: 120px;
+            transform: rotate(-15deg);
+            animation: feather-float 8s ease-in-out infinite;
+        }
+        
+        .feather-2 {
+            top: 50px;
+            right: 130px;
+            transform: rotate(15deg);
+            animation: feather-float 7s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        
+        .feather-3 {
+            top: 80px;
+            left: 150px;
+            transform: rotate(-10deg);
+            animation: feather-float 9s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        
+        @keyframes feather-float {
+            0%, 100% { transform: translateY(0) rotate(-15deg); }
+            50% { transform: translateY(-15px) rotate(-10deg); }
+        }
+        
+        /* Features Section */
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: var(--teal-gradient);
+            border-radius: 2px;
+        }
+        
+        .section-header p {
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--teal-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+        
+        /* Services Section */
+        .services {
+            background: var(--light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .service-content p {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--teal);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        
+        .service-link i {
+            margin-right: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .service-link:hover {
+            color: #115e59;
+        }
+        
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Products Section */
+        .products {
+            background: white;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .filter-button {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid var(--teal);
+            background: transparent;
+            color: var(--teal);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .filter-button.active, .filter-button:hover {
+            background: var(--teal);
+            color: white;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-category {
+            display: inline-block;
+            background: rgba(13, 148, 136, 0.1);
+            color: var(--teal);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        
+        .product-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .product-content p {
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .product-actions .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        
+        /* Partnership Section */
+        .partnership {
+            background: var(--light);
+        }
+        
+        .partnership-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .partnership-item {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .partnership-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            text-align: center;
+        }
+        
+        .partnership-list {
+            list-style: none;
+        }
+        
+        .partnership-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.95rem;
+        }
+        
+        .partnership-list i {
+            color: var(--teal);
+            margin-left: 0.5rem;
+            margin-top: 0.2rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background: white;
+        }
+        
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin: 0 1rem;
+        }
+        
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            border: 4px solid var(--teal);
+            overflow: hidden;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #6c757d;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .testimonial-role {
+            color: var(--teal);
+            font-size: 0.85rem;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--teal-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .contact-details p, .contact-details a {
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 140px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--teal);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-right: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .social-link:hover {
+            background: var(--teal);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        /* Product Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #333;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-category {
+            display: inline-block;
+            background: rgba(13, 148, 136, 0.1);
+            color: var(--teal);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .modal-description {
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        .modal-actions .btn {
+            flex: 1;
+            min-width: 140px;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+            animation: pulse 2s infinite;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.6rem;
+            transition: var(--transition);
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(34, 197, 94, 0.6);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                margin-bottom: 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .logo-3d {
+                max-width: 350px;
+                height: 220px;
+            }
+            
+            .wing {
+                width: 90px;
+                height: 130px;
+            }
+            
+            .wing-left {
+                left: 70px;
+            }
+            
+            .wing-right {
+                right: 70px;
+            }
+            
+            .logo-center {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .feather-1 {
+                left: 100px;
+            }
+            
+            .feather-2 {
+                right: 110px;
+            }
+            
+            .feather-3 {
+                left: 130px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links, .nav-buttons {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero {
+                padding: 7rem 0 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .logo-3d {
+                max-width: 300px;
+                height: 200px;
+            }
+            
+            .wing {
+                width: 80px;
+                height: 120px;
+            }
+            
+            .wing-left {
+                left: 60px;
+            }
+            
+            .wing-right {
+                right: 60px;
+            }
+            
+            .logo-center {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .logo-center::before {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+                bottom: 25px;
+            }
+            
+            .feather-1 {
+                left: 90px;
+                top: 25px;
+            }
+            
+            .feather-2 {
+                right: 100px;
+                top: 40px;
+            }
+            
+            .feather-3 {
+                left: 110px;
+                top: 70px;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .modal-actions .btn {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            html {
+                font-size: 14px;
+            }
+            
+            .hero {
+                padding: 6rem 0 2.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .section {
+                padding: 2.5rem 0;
+            }
+            
+            .feature-card, .service-card, .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
+            }
+            
+            .logo-3d {
+                max-width: 250px;
+                height: 180px;
+            }
+            
+            .wing {
+                width: 70px;
+                height: 100px;
+            }
+            
+            .wing-left {
+                left: 50px;
+            }
+            
+            .wing-right {
+                right: 50px;
+            }
+            
+            .logo-center {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .logo-center::before {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .logo-text {
+                font-size: 1.1rem;
+                bottom: 20px;
+            }
+            
+            .feather-1 {
+                left: 80px;
+                top: 20px;
+            }
+            
+            .feather-2 {
+                right: 90px;
+                top: 35px;
+            }
+            
+            .feather-3 {
+                left: 100px;
+                top: 60px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+                bottom: 15px;
+                left: 15px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .features-grid, .services-grid, .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-button {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .logo-3d {
+                max-width: 220px;
+                height: 160px;
+            }
+            
+            .wing {
+                width: 60px;
+                height: 90px;
+            }
+            
+            .wing-left {
+                left: 40px;
+            }
+            
+            .wing-right {
+                right: 40px;
+            }
+            
+            .logo-center {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-center::before {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+            
+            .feather-1 {
+                left: 70px;
+                top: 15px;
+            }
+            
+            .feather-2 {
+                right: 80px;
+                top: 30px;
+            }
+            
+            .feather-3 {
+                left: 90px;
+                top: 50px;
+            }
         }
     </style>
 </head>
-<body class="p-4 sm:p-8 lg:p-12">
-
-    <header class="text-center mb-8 sm:mb-12 pt-4 pb-6 bg-white rounded-xl shadow-2xl max-w-7xl mx-auto border-t-8 border-teal-500">
-        
-        <!-- Corporate Identity Section -->
-        <div class="flex items-center justify-center mb-4 p-3 bg-indigo-50 rounded-xl shadow-inner max-w-xl mx-auto border-b-4 border-indigo-400">
-            <!-- Professional Wing Icon (as placeholder for logo) -->
-            <svg class="w-10 h-10 text-teal-600 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#0d9488" stroke="none" d="M12 21c4 0 7-3.333 7-7s-3-7-7-7-7 3-7 7 3 7 7 7zm0 0V3m0 18c-3.333-1-7-3.333-7-7s3-7 7-7 7 3 7 7-3.667 6-7 7zm0 0V3m0 18c3.333-1-7-3.333-7-7s3-7 7-7 7 3 7 7-3.667 6-7 7z"/>
-            </svg>
-            <div>
-                <p class="text-2xl sm:text-3xl font-extrabold text-indigo-800 leading-none">الأجنحة الذهبية للتجارة العامة</p>
-                <p class="text-lg sm:text-xl font-medium text-gray-600 leading-none" style="direction: ltr;">Golden Wings General Trading</p>
-            </div>
-        </div>
-        <!-- End: Corporate Identity Section -->
-
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-3">كتالوج المنتجات الغذائية المجمدة</h1>
-        
-        <div class="text-lg sm:text-xl font-bold text-teal-700 max-w-4xl mx-auto mb-6 leading-relaxed p-2 rounded-lg">
-            <p>الأجنحة الذهبية - شريكك الاستراتيجي في توريد الأغذية المجمدة والبراندات العالمية من مصر.</p>
-        </div>
-
-        <button id="toggle-info-btn" onclick="toggleMoreInfo()" class="mt-4 py-2 px-8 rounded-full font-bold text-base bg-teal-600 text-white hover:bg-teal-700 transition duration-300 shadow-xl transform hover:scale-105">
-            من نحن؟ (لمعرفة خدماتنا)
-        </button>
-
-        <div id="more-info-content" class="text-right max-w-4xl mx-auto px-4">
-            <div class="text-gray-700 text-base space-y-4">
-                <h3 class="text-xl font-bold text-gray-800 mt-6 border-b pb-2 border-gray-200">📦 ما نقدمه: حلول توريد متكاملة</h3>
-                <ul class="list-none space-y-2 pr-4 text-sm">
-                    <li class="flex items-start">
-                        <span class="text-indigo-600 font-extrabold ml-2">◆</span>
-                        <div>
-                            <strong class="text-indigo-600">الفواكه والخضروات المجمدة (IQF):</strong>
-                            <p class="text-xs mr-6">إنتاج وتجهيز بأحدث تقنيات IQF في مصر. يشمل: قطع المانجو، الفراولة، البروكلي، الفاصوليا، السبانخ، وغيرها. جميعها تُزرع في الأراضي المصرية الخصبة.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-indigo-600 font-extrabold ml-2">◆</span>
-                        <div>
-                            <strong class="text-indigo-600">المواد الغذائية العالمية (البراندات):</strong>
-                            <p class="text-xs mr-6">توريد جملة للعلامات التجارية الكبرى مثل ريد بول، ليبتون، جلاكسي، وغيرها من الأصناف الاستهلاكية المطلوبة.</p>
-                        </div>
-                    </li>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-feather-alt"></i>
+                    الأجنحة الذهبية
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#products">المنتجات</a></li>
+                    <li><a href="#partnership">الشراكة</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
                 </ul>
-                <h3 class="text-xl font-bold text-gray-800 mt-6 border-b pb-2 border-gray-200">🔍 نبحث عن شراكة موثوقة في:</h3>
-                <p class="text-sm">دول الاتحاد الأوروبي: بريطانيا، ألمانيا، هولندا، فرنسا، بلجيكا، وغيرها.</p>
-                <p class="text-sm">دول مجلس التعاون الخليجي: السعودية، الإمارات، قطر، الكويت، البحرين، عمان.</p>
-                <p class="font-bold text-red-600 text-sm">الشركاء المطلوبون: مستوردين، موزعين، تجار جملة، وسماسرة تجارية ذوي خبرة.</p>
-                <p class="font-bold mt-4 text-green-700">
-                    🤝 هل أنت مستعد للنمو معنا؟ اتصل بنا الآن لتلقي الكتالوج الكامل وقائمة الأسعار التنافسية.
-                </p>
-            </div>
+                
+                <div class="nav-buttons">
+                    <a href="tel:+201091321859" class="btn btn-outline">اتصل بنا</a>
+                    <a href="https://wa.me/201091321859" target="_blank" class="btn btn-primary">واتساب</a>
+                </div>
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
         </div>
-        <div class="h-1 w-20 bg-teal-500 mx-auto mt-4 rounded-full"></div>
     </header>
 
-    <!-- Main Content Wrapper: Sidebar + Product Grid -->
-    <div class="main-content-wrapper max-w-7xl mx-auto">
-        
-        <!-- Sidebar and Filters (Right Column on Desktop, Top Section on Mobile) -->
-        <aside id="sidebar" class="bg-white p-6 rounded-xl shadow-2xl mb-8 lg:mb-0 lg:sticky lg:top-8 lg:h-fit border-r-8 border-indigo-200">
-            <h3 class="text-xl font-extrabold text-indigo-700 mb-6 border-b pb-3">لوحة التحكم والتصفية</h3>
-
-            <!-- Search Input -->
-            <div class="mb-6">
-                <label for="search-input" class="block text-gray-700 font-bold mb-2 text-sm">البحث بالاسم:</label>
-                <input type="text" id="search-input" oninput="applyFilters()" placeholder="ابحث عن اسم المنتج..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500 transition duration-150 shadow-inner" />
-            </div>
-
-            <!-- Sorting Option -->
-            <div class="mb-6">
-                <label for="sort-select" class="block text-gray-700 font-bold mb-2 text-sm">ترتيب المنتجات حسب:</label>
-                <div class="relative">
-                    <select id="sort-select" onchange="applyFilters()" class="custom-select w-full p-3 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500 transition duration-150 bg-white pr-10">
-                        <option value="id">الأحدث أولاً</option>
-                        <option value="name_asc">الاسم (أ - ي)</option>
-                        <option value="name_desc">الاسم (ي - أ)</option>
-                    </select>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>الأجنحة الذهبية: شريكك الاستراتيجي في توريد الأغذية العالمية</h1>
+                    <p>المصدر الرائد في مصر لتوريد الفواكه والخضروات المجمدة (IQF) والبراندات العالمية. رغم أن مقرنا يقع في جمهورية مصر العربية، فإن جودة منتجاتنا وخدماتنا تمكننا من التحليق والشحن إلى أي مكان في العالم.</p>
+                    <div class="hero-buttons">
+                        <a href="#products" class="btn btn-primary">استكشف المنتجات</a>
+                        <a href="tel:+201091321859" class="btn btn-gold">اتصل بنا الآن</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="logo-3d">
+                        <div class="logo-wings">
+                            <div class="wing wing-left"></div>
+                            <div class="wing wing-right"></div>
+                            <div class="logo-center"></div>
+                            <div class="logo-text">الأجنحة الذهبية</div>
+                            <div class="feather feather-1"></div>
+                            <div class="feather feather-2"></div>
+                            <div class="feather feather-3"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Category Filters -->
-            <div class="mb-6">
-                <p class="block text-gray-700 font-bold mb-3 text-sm">تصفية حسب الفئة:</p>
-                <div id="category-filters" class="flex flex-wrap gap-2 lg:flex-col lg:gap-3">
-                    <!-- Filters will be populated here -->
-                </div>
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>خدماتنا المتكاملة</h2>
+                <p>نقدم حلول توريد متكاملة تلبي جميع احتياجاتك</p>
             </div>
-
-            <!-- Contact Reminder (Updated to remove direct numbers and use new WhatsApp) -->
-            <div class="mt-8 p-4 bg-teal-50 border-r-4 border-teal-500 rounded-lg shadow-inner">
-                <p class="font-extrabold text-lg text-teal-800 mb-3 text-center">للتعاقد وطلب الكميات:</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="المنتجات المجمدة">
+                    </div>
+                    <div class="service-content">
+                        <h3>المنتجات المجمدة (IQF)</h3>
+                        <p>إنتاج وتجهيز الفواكه والخضروات المجمدة بأحدث تقنيات التجميد الفردي السريع (IQF) من الأراضي المصرية الخصبة.</p>
+                        <a href="#products" class="service-link">
+                            <i class="fas fa-arrow-left"></i> استكشف المنتجات
+                        </a>
+                    </div>
+                </div>
                 
-                <a href="https://wa.me/201080561711?text=مرحباً، أود الاستفسار عن كميات الجملة لمنتجاتكم والتعاقد." 
-                   target="_blank" 
-                   class="inline-block w-full text-center py-3 text-white bg-green-600 rounded-xl hover:bg-green-700 transition duration-300 font-extrabold shadow-lg transform hover:scale-[1.02] mb-4">
-                   <svg class="w-5 h-5 inline-block ml-2 mb-0.5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.039 2C6.541 2 2 6.574 2 12.062c0 1.638.411 3.253 1.164 4.673L2.2 22l4.8-1.55c1.378.826 2.943 1.25 4.939 1.25 5.498 0 9.998-4.575 9.998-10.062S17.537 2 12.039 2zm4.5 13.921c-.183.183-.393.284-.633.284-.24 0-.45-.101-.633-.284l-.872-.871c-.13-.131-.321-.168-.485-.098-.558.23-1.127.351-1.706.351-1.38 0-2.613-.483-3.473-1.423-.974-1.096-1.503-2.39-1.503-3.837 0-.464.12-.924.34-1.355.07-.123.155-.224.254-.308l.74-.741c.144-.144.335-.144.478 0l1.355 1.356c.144.144.144.335 0 .478l-.74.74c-.098.098-.098.243 0 .341l.98 1.13c.857.974 2.191 1.666 3.655 1.666.277 0 .543-.038.795-.113.167-.058.358-.021.492.113l1.13 1.13c.183.183.284.393.284.633.001.24-.101.451-.285.633l-.872.872z"/></svg>
-                   تواصل واتساب (للعقود)
-                </a>
-
-                <p class="font-bold text-sm text-teal-700 mt-4 mb-2 border-t pt-3 border-teal-200 text-center">
-                    لأية استفسارات أخرى، يرجى التواصل أيضاً عبر الواتساب.
-                </p>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="البراندات العالمية">
+                    </div>
+                    <div class="service-content">
+                        <h3>البراندات العالمية</h3>
+                        <p>توريد جملة للعلامات التجارية العالمية المشهورة من الأصناف الاستهلاكية المطلوبة في الأسواق العالمية.</p>
+                        <a href="tel:+201091321859" class="service-link">
+                            <i class="fas fa-arrow-left"></i> تواصل معنا
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="الشحن الدولي">
+                    </div>
+                    <div class="service-content">
+                        <h3>الشحن الدولي</h3>
+                        <p>شحن سريع ودعم شامل في عمليات التخليص الجمركي وتسهيل التوريد لكميات كبيرة عالمياً.</p>
+                        <a href="tel:+201091321859" class="service-link">
+                            <i class="fas fa-arrow-left"></i> احصل على عرض
+                        </a>
+                    </div>
+                </div>
             </div>
-            <!-- END Contact Reminder -->
-        </aside>
+        </div>
+    </section>
 
-        <!-- Product Grid Area (Left Column on Desktop, Main Section on Mobile) -->
-        <main id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Product Cards will be rendered here by JavaScript -->
-        </main>
-    </div>
+    <!-- Products Section -->
+    <section class="section products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>كتالوج المنتجات الغذائية المجمدة</h2>
+                <p>اكتشف منتجاتنا من الفواكه والخضروات المصرية الطازجة المجمدة بتقنية IQF</p>
+            </div>
 
-    <footer class="text-center mt-20 pt-8 border-t border-gray-300 text-gray-500 text-sm">
-        <p>&copy; 2025 الأجنحة الذهبية. جميع الحقوق محفوظة. لطلب الكميات، يرجى التواصل عبر واتساب.</p>
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-button active" data-filter="all">جميع المنتجات</button>
+                <button class="filter-button" data-filter="خضروات مجمدة">خضروات مجمدة</button>
+                <button class="filter-button" data-filter="فواكه مجمدة">فواكه مجمدة</button>
+                <button class="filter-button" data-filter="منتجات البطاطس">منتجات البطاطس</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="products-container">
+                <!-- Product cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section class="section partnership" id="partnership">
+        <div class="container">
+            <div class="section-header">
+                <h2>فرص الشراكة</h2>
+                <p>نبحث عن شركاء موثوقين للتعاون في الأسواق العالمية</p>
+            </div>
+            
+            <div class="partnership-content">
+                <div class="partnership-item">
+                    <h3>الأسواق المستهدفة</h3>
+                    <ul class="partnership-list">
+                        <li><i class="fas fa-check"></i> دول الاتحاد الأوروبي: بريطانيا، ألمانيا، هولندا، فرنسا، بلجيكا، وغيرها</li>
+                        <li><i class="fas fa-check"></i> دول مجلس التعاون الخليجي: السعودية، الإمارات، قطر، الكويت، البحرين، عمان</li>
+                    </ul>
+                </div>
+                
+                <div class="partnership-item">
+                    <h3>الشركاء المطلوبون</h3>
+                    <ul class="partnership-list">
+                        <li><i class="fas fa-check"></i> مستوردين</li>
+                        <li><i class="fas fa-check"></i> موزعين</li>
+                        <li><i class="fas fa-check"></i> تجار جملة</li>
+                        <li><i class="fas fa-check"></i> سماسرة تجارية موثوقين وذوي خبرة</li>
+                    </ul>
+                </div>
+                
+                <div class="partnership-item">
+                    <h3>لماذا تختار الأجنحة الذهبية؟</h3>
+                    <ul class="partnership-list">
+                        <li><i class="fas fa-check"></i> حل توريد شامل: (مجمدات IQF + براندات عالمية)</li>
+                        <li><i class="fas fa-check"></i> تسعير تنافسي بالجملة</li>
+                        <li><i class="fas fa-check"></i> أعلى معايير الجودة الدولية وشهادات الآيزو</li>
+                        <li><i class="fas fa-check"></i> شحن سريع ودعم شامل في التخليص الجمركي</li>
+                        <li><i class="fas fa-check"></i> قدرة إنتاجية قوية للطلبات الكبيرة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>آراء عملائنا</h2>
+                <p>اكتشف ما يقوله عملاؤنا عن تجربتهم معنا</p>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="أحمد محمد">
+                    </div>
+                    <div class="testimonial-text">
+                        "لقد تفاجأت بمستوى الاحترافية والجودة في العمل. فريق الأجنحة الذهبية استمع جيدًا لاحتياجاتي وقدم لي منتجات تتجاوز توقعاتي. أنصح بالتعامل معهم بشدة."
+                    </div>
+                    <div class="testimonial-author">أحمد محمد</div>
+                    <div class="testimonial-role">مدير شركة التقنية المتطورة</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>اتصل بنا</h2>
+                <p>نحن هنا للإجابة على استفساراتك ومساعدتك في بدء مشروعك التجاري</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>عنواننا</h3>
+                            <p>جمهورية مصر العربية</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>اتصل بنا</h3>
+                            <p><a href="tel:+201091321859" style="color: inherit; text-decoration: none;">+20 109 132 1859</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>واتساب</h3>
+                            <p><a href="https://wa.me/201091321859" target="_blank" style="color: inherit; text-decoration: none;">+20 109 132 1859</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>البريد الإلكتروني</h3>
+                            <p>info@goldenwings.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="الاسم الكامل" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="البريد الإلكتروني" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="الموضوع">
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="رسالتك" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>الأجنحة الذهبية</h3>
+                    <p>المصدر الرائد في مصر لتوريد الفواكه والخضروات المجمدة (IQF) والبراندات العالمية. نحن شريكك الاستراتيجي في توريد الأغذية العالمية.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#services">خدماتنا</a></li>
+                        <li><a href="#products">المنتجات</a></li>
+                        <li><a href="#partnership">الشراكة</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>خدماتنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#products">المنتجات المجمدة (IQF)</a></li>
+                        <li><a href="#services">البراندات العالمية</a></li>
+                        <li><a href="#services">الشحن الدولي</a></li>
+                        <li><a href="tel:+201091321859">طلب عرض سعر</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>النشرة البريدية</h3>
+                    <p>اشترك في نشرتنا البريدية لتصلك آخر التحديثات والعروض الخاصة.</p>
+                    <form class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="بريدك الإلكتروني" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">اشترك الآن</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 الأجنحة الذهبية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
     </footer>
 
-    <!-- Floating WhatsApp Button (Updated WhatsApp Number) -->
-    <a href="https://wa.me/201080561711?text=مرحباً، أود الاستفسار عن منتجاتكم الغذائية المجمدة." 
-       target="_blank" 
-       class="whatsapp-float text-white rounded-full p-4 hover:opacity-90 transition duration-300">
-        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.039 2C6.541 2 2 6.574 2 12.062c0 1.638.411 3.253 1.164 4.673L2.2 22l4.8-1.55c1.378.826 2.943 1.25 4.939 1.25 5.498 0 9.998-4.575 9.998-10.062S17.537 2 12.039 2zm4.5 13.921c-.183.183-.393.284-.633.284-.24 0-.45-.101-.633-.284l-.872-.871c-.13-.131-.321-.168-.485-.098-.558.23-1.127.351-1.706.351-1.38 0-2.613-.483-3.473-1.423-.974-1.096-1.503-2.39-1.503-3.837 0-.464.12-.924.34-1.355.07-.123.155-.224.254-.308l.74-.741c.144-.144.335-.144.478 0l1.355 1.356c.144.144.144.335 0 .478l-.74.74c-.098.098-.098.243 0 .341l.98 1.13c.857.974 2.191 1.666 3.655 1.666.277 0 .543-.038.795-.113.167-.058.358-.021.492.113l1.13 1.13c.183.183.284.393.284.633.001.24-.101.451-.285.633l-.872.872z"/></svg>
-    </a>
-
-    <!-- Product Modal Structure (Unchanged) -->
-    <div id="product-modal" class="modal invisible fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center p-4 z-50 opacity-0">
-        <div id="modal-content" class="modal-content bg-white rounded-xl shadow-2xl w-full max-w-lg lg:max-w-xl overflow-hidden transform scale-95">
-            <button onclick="closeModal()" class="absolute top-4 left-4 text-gray-600 hover:text-gray-900 z-10 p-2 bg-white rounded-full shadow-md">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <!-- Product Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">
+                <i class="fas fa-times"></i>
             </button>
-            <div class="p-6 sm:p-8">
-                <img id="modal-img" src="" alt="صورة المنتج" class="w-full h-64 object-cover object-center rounded-lg mb-6 border border-gray-200">
-                <p id="modal-category" class="font-bold text-sm text-teal-600 mb-2"></p>
-                <h2 id="modal-name" class="text-3xl font-extrabold text-gray-900 mb-4"></h2>
-                
-                <p id="modal-description" class="text-gray-700 leading-relaxed text-lg mb-8"></p>
-                
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a id="modal-whatsapp-link" href="#" target="_blank" class="flex-1 text-center py-3 px-6 rounded-lg font-bold text-lg bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300 shadow-xl">طلب عرض سعر</a>
-                    <button onclick="closeModal()" class="flex-1 py-3 px-6 rounded-lg font-bold text-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition duration-300 shadow-md">إغلاق</button>
+            <div class="modal-body">
+                <img id="modal-image" src="" alt="صورة المنتج" class="modal-image">
+                <span id="modal-category" class="modal-category"></span>
+                <h2 id="modal-title" class="modal-title"></h2>
+                <p id="modal-description" class="modal-description"></p>
+                <div class="modal-actions">
+                    <a id="modal-whatsapp" href="#" target="_blank" class="btn btn-primary">طلب عرض سعر عبر واتساب</a>
+                    <a id="modal-call" href="tel:+201091321859" class="btn btn-gold">اتصل بنا الآن</a>
+                    <button class="btn btn-outline" id="modal-close-btn">إغلاق</button>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/201091321859?text=مرحباً، أود الاستفسار عن منتجاتكم الغذائية المجمدة." 
+       target="_blank" 
+       class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Product Data -->
     <script id="product-data" type="application/json">
         [
-            { "id": 1, "name": "بامية ممتازة (Extra)", "category": "خضروات مجمدة", "description": "بامية خضراء طازجة، تقطع وتجمد بتقنية IQF. التعبئة: كرتون (4*2.5 كجم).", "imgSrc": "https://i.ibb.co/hRbtMZLv/IMG-20251004-WA0006.jpg", "price": "55 ر.س / للكيلو" },
-            { "id": 2, "name": "بطاطس مقلية 9x9 (French Fries)", "category": "منتجات البطاطس", "description": "بطاطس مقلية سميكة (9*9) مجمدة. التعبئة: كرتون (4*2.5 كجم).", "imgSrc": "https://i.ibb.co/wr8zGqWr/IMG-20251004-WA0002.jpg", "price": "38 ر.س / للكيلو" },
-            { "id": 3, "name": "بطاطس مقلية 7x7 (French Fries)", "category": "منتجات البطاطس", "description": "بطاطس مقلية رفيعة (7*7) مجمدة. التعبئة: كرتون (20*2.5 كجم).", "imgSrc": "https://i.ibb.co/SDwsfCZN/IMG-20251004-WA0017.jpg", "price": "42 ر.س / للكيلو" },
-            { "id": 4, "name": "فاصولياء خضراء (Green Beans)", "category": "خضروات مجمدة", "description": "فاصولياء خضراء رفيعة مقطعة ومجهزة للطبخ. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/60YxFLjZ/IMG-20251004-WA0004.jpg", "price": "45 ر.س / للكيلو" },
-            { "id": 5, "name": "بسلة وجزر (Peas & Carrots)", "category": "خضروات مجمدة", "description": "خليط بسلة وجزر مجمد. الأجود والأكثر نضارة. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/27LTC6vg/IMG-20251004-WA0023.jpg", "price": "35 ر.س / للكيلو" },
-            { "id": 6, "name": "خضروات مشكلة (Mix Veg)", "category": "خضروات مجمدة", "description": "مزيج متكامل من الخضروات المتنوعة، جاهزة للطهي. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/KjWbPVR9/IMG-20251004-WA0021.jpg", "price": "32 ر.س / للكيلو" },
-            { "id": 7, "name": "فلفل كابيا (Kapia Pepper) مجمد", "category": "خضروات مجمدة", "description": "فلفل كابيا مجمد، مثالي للطبخ. يحافظ على لونه وقوامه. التعبئة: كرتون (4*2.5 كجم).", "imgSrc": "https://i.ibb.co/39HMZB53/IMG-20251004-WA0022.jpg", "price": "67 ر.س / للكيلو" },
-            { "id": 8, "name": "سبانخ (Spinach) مفرومة", "category": "خضروات مجمدة", "description": "أوراق سبانخ طازجة ومفرومة، مجمدة بالكامل. غنية بالحديد. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/xSd3ZPM7/IMG-20251004-WA0020.jpg", "price": "32 ر.س / للكيلو" },
-            { "id": 9, "name": "مانجو شرائح مجمدة", "category": "فواكه مجمدة", "description": "شرائح مانجو حلوة وناضجة، مجمدة للحفاظ على مذاقها الاستوائي. التعبئة: كرتون (1*10 كجم).", "imgSrc": "https://i.ibb.co/CKck00FX/IMG-20251004-WA0008.jpg", "price": "68 ر.س / للكيلو" },
-            { "id": 10, "name": "فراولة مجمدة", "category": "فواكه مجمدة", "description": "فراولة حمراء ناضجة وحلوة، يتم تجميدها كاملة. مثالية للعصائر. التعبئة: كرتون (1*10 كجم).", "imgSrc": "https://i.ibb.co/MDZK0L0J/IMG-20251004-WA0005.jpg", "price": "50 ر.س / للكيلو" },
-            { "id": 11, "name": "ذرة حلوة (Sweet Corn) مجمدة", "category": "خضروات مجمدة", "description": "حبوب ذرة حلوة صفراء مجمدة، جاهزة للطبخ. التعبئة: كرتون (1*10 كجم).", "imgSrc": "https://i.ibb.co/XkVdM1pF/IMG-20251004-WA0009.jpg", "price": "50 ر.س / للكيلو" },
-            { "id": 12, "name": "أزهار البروكلي المجمدة", "category": "خضروات مجمدة", "description": "بروكلي مقطع إلى أزهار صغيرة ومغسول، مجمد بشكل فردي. التعبئة: كرتون (4*2.5 كجم).", "imgSrc": "https://i.ibb.co/vxTLK74h/IMG-20251004-WA0010.jpg", "price": "35 ر.س / للكيلو" },
-            { "id": 13, "name": "قرنبيط (Cauliflower) مجمد", "category": "خضروات مجمدة", "description": "قرنبيط مقطع إلى أزهار، مجمد بتقنية IQF. جاهز للطهي. التعبئة: كرتون (4*2.5 كجم).", "imgSrc": "https://i.ibb.co/PdQStGy/IMG-20251004-WA0011.jpg", "price": "34 ر.س / للكيلو" },
-            { "id": 14, "name": "ملوخية مفرومة جاهزة", "category": "خضروات مجمدة", "description": "أوراق ملوخية طازجة مفرومة ومجمدة، سهلة التحضير. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/CxQXkXp/IMG-20251004-WA0014.jpg", "price": "23 ر.س / للكيلو" },
-            { "id": 15, "name": "بامية كبيرة (XL) مجمدة", "category": "خضروات مجمدة", "description": "بامية مقطعة كبيرة جداً (XL)، مجمدة فردياً. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/4ZxJ1mxw/IMG-20251004-WA0025.jpg", "price": "48 ر.س / للكيلو" },
-            { "id": 16, "name": "بامية كبيرة جداً (One)", "category": "خضروات مجمدة", "description": "بامية مقطعة كبيرة جداً (تصنيف One)، مجمدة فردياً. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/fGFyr8TX/IMG-20251004-WA0001.jpg", "price": "49 ر.س / للكيلو" },
-            { "id": 17, "name": "بامية صغيرة (One)", "category": "خضروات مجمدة", "description": "بامية مقطعة صغيرة (تصنيف One)، مجمدة فردياً. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/601MhvC9/IMG-20251004-WA0012.jpg", "price": "52 ر.س / للكيلو" },
-            { "id": 18, "name": "IQF مكعبات جزر مجمدة", "category": "خضروات مجمدة", "description": "جزر طازج 100٪ منشأ مصري، غير معدّل وراثيًا وبدون إضافات. متوفر بمقاسات (6*6 مم) و (10*10 مم). جودة IQF فائقة.", "imgSrc": "https://i.ibb.co/7NKbf68R/IMG-20251004-WA0024.jpg", "price": "40 ر.س / للكيلو" }
+            { "id": 1, "name": "بامية ممتازة (Extra)", "category": "خضروات مجمدة", "description": "بامية خضراء طازجة، تقطع وتجمد بتقنية IQF. التعبئة: كرتون (4*2.5 كجم).", "imgSrc": "https://i.ibb.co/hRbtMZLv/IMG-20251004-WA0006.jpg" },
+            { "id": 2, "name": "بطاطس مقلية 9x9 (French Fries)", "category": "منتجات البطاطس", "description": "بطاطس مقلية سميكة (9*9) مجمدة. التعبئة: كرتون (4*2.5 كجم).", "imgSrc": "https://i.ibb.co/wr8zGqWr/IMG-20251004-WA0002.jpg" },
+            { "id": 3, "name": "بطاطس مقلية 7x7 (French Fries)", "category": "منتجات البطاطس", "description": "بطاطس مقلية رفيعة (7*7) مجمدة. التعبئة: كرتون (20*2.5 كجم).", "imgSrc": "https://i.ibb.co/SDwsfCZN/IMG-20251004-WA0017.jpg" },
+            { "id": 4, "name": "فاصولياء خضراء (Green Beans)", "category": "خضروات مجمدة", "description": "فاصولياء خضراء رفيعة مقطعة ومجهزة للطبخ. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/60YxFLjZ/IMG-20251004-WA0004.jpg" },
+            { "id": 5, "name": "بسلة وجزر (Peas & Carrots)", "category": "خضروات مجمدة", "description": "خليط بسلة وجزر مجمد. الأجود والأكثر نضارة. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/27LTC6vg/IMG-20251004-WA0023.jpg" },
+            { "id": 6, "name": "خضروات مشكلة (Mix Veg)", "category": "خضروات مجمدة", "description": "مزيج متكامل من الخضروات المتنوعة، جاهزة للطهي. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/KjWbPVR9/IMG-20251004-WA0021.jpg" },
+            { "id": 7, "name": "فلفل كابيا (Kapia Pepper) مجمد", "category": "خضروات مجمدة", "description": "فلفل كابيا مجمد، مثالي للطبخ. يحافظ على لونه وقوامه. التعبئة: كرتون (4*2.5 كجم).", "imgSrc": "https://i.ibb.co/39HMZB53/IMG-20251004-WA0022.jpg" },
+            { "id": 8, "name": "سبانخ (Spinach) مفرومة", "category": "خضروات مجمدة", "description": "أوراق سبانخ طازجة ومفرومة، مجمدة بالكامل. غنية بالحديد. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/xSd3ZPM7/IMG-20251004-WA0020.jpg" },
+            { "id": 9, "name": "مانجو شرائح مجمدة", "category": "فواكه مجمدة", "description": "شرائح مانجو حلوة وناضجة، مجمدة للحفاظ على مذاقها الاستوائي. التعبئة: كرتون (1*10 كجم).", "imgSrc": "https://i.ibb.co/CKck00FX/IMG-20251004-WA0008.jpg" },
+            { "id": 10, "name": "فراولة مجمدة", "category": "فواكه مجمدة", "description": "فراولة حمراء ناضجة وحلوة، يتم تجميدها كاملة. مثالية للعصائر. التعبئة: كرتون (1*10 كجم).", "imgSrc": "https://i.ibb.co/MDZK0L0J/IMG-20251004-WA0005.jpg" },
+            { "id": 11, "name": "ذرة حلوة (Sweet Corn) مجمدة", "category": "خضروات مجمدة", "description": "حبوب ذرة حلوة صفراء مجمدة، جاهزة للطبخ. التعبئة: كرتون (1*10 كجم).", "imgSrc": "https://i.ibb.co/XkVdM1pF/IMG-20251004-WA0009.jpg" },
+            { "id": 12, "name": "أزهار البروكلي المجمدة", "category": "خضروات مجمدة", "description": "بروكلي مقطع إلى أزهار صغيرة ومغسول، مجمد بشكل فردي. التعبئة: كرتون (4*2.5 كجم).", "imgSrc": "https://i.ibb.co/vxTLK74h/IMG-20251004-WA0010.jpg" },
+            { "id": 13, "name": "قرنبيط (Cauliflower) مجمد", "category": "خضروات مجمدة", "description": "قرنبيط مقطع إلى أزهار، مجمد بتقنية IQF. جاهز للطهي. التعبئة: كرتون (4*2.5 كجم).", "imgSrc": "https://i.ibb.co/PdQStGy/IMG-20251004-WA0011.jpg" },
+            { "id": 14, "name": "ملوخية مفرومة جاهزة", "category": "خضروات مجمدة", "description": "أوراق ملوخية طازجة مفرومة ومجمدة، سهلة التحضير. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/CxQXkXp/IMG-20251004-WA0014.jpg" },
+            { "id": 15, "name": "بامية كبيرة (XL) مجمدة", "category": "خضروات مجمدة", "description": "بامية مقطعة كبيرة جداً (XL)، مجمدة فردياً. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/4ZxJ1mxw/IMG-20251004-WA0025.jpg" },
+            { "id": 16, "name": "بامية كبيرة جداً (One)", "category": "خضروات مجمدة", "description": "بامية مقطعة كبيرة جداً (تصنيف One)، مجمدة فردياً. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/fGFyr8TX/IMG-20251004-WA0001.jpg" },
+            { "id": 17, "name": "بامية صغيرة (One)", "category": "خضروات مجمدة", "description": "بامية مقطعة صغيرة (تصنيف One)، مجمدة فردياً. التعبئة: كرتون (20*400 جرام).", "imgSrc": "https://i.ibb.co/601MhvC9/IMG-20251004-WA0012.jpg" },
+            { "id": 18, "name": "IQF مكعبات جزر مجمدة", "category": "خضروات مجمدة", "description": "جزر طازج 100٪ منشأ مصري، غير معدّل وراثيًا وبدون إضافات. متوفر بمقاسات (6*6 مم) و (10*10 مم). جودة IQF فائقة.", "imgSrc": "https://i.ibb.co/7NKbf68R/IMG-20251004-WA0024.jpg" }
         ]
     </script>
-    
-    <script>
-        // تم تحديث رقم الواتساب هنا
-        const WHATSAPP_NUMBER = '201080561711'; 
-        let allProducts = [];
-        let uniqueCategories = [];
-        let currentCategory = 'الكل';
-        let currentSearchTerm = '';
-        let currentSort = 'id';
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            try {
-                const dataScript = document.getElementById('product-data').textContent;
-                allProducts = JSON.parse(dataScript).map((p, index) => ({
-                    ...p,
-                    id: p.id || (index + 1)
-                }));
-                
-                extractCategories();
-                renderFilters();
-                applyFilters();
 
-            } catch (e) {
-                console.error("Error parsing product data:", e);
-                document.getElementById('product-list').innerHTML = `<p class="text-red-600 col-span-full text-center text-xl font-bold">عذراً، حدث خطأ في تحميل بيانات المنتجات.</p>`;
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
         });
 
-        function extractCategories() {
-            const categories = allProducts.map(p => p.category);
-            uniqueCategories = ['الكل', ...new Set(categories)];
-        }
-
-        function renderFilters() {
-            const container = document.getElementById('category-filters');
-            container.innerHTML = '';
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const navButtons = document.querySelector('.nav-buttons');
+        
+        mobileMenu.addEventListener('click', function() {
+            const isNavVisible = navLinks.style.display === 'flex';
             
-            uniqueCategories.forEach(category => {
-                const button = document.createElement('button');
-                button.textContent = category;
-                button.className = `filter-button text-sm py-2 px-4 rounded-full font-semibold transition duration-200 shadow-sm whitespace-nowrap ${category === currentCategory ? 'active' : 'bg-gray-200 text-gray-700 hover:bg-teal-100 hover:text-teal-700'}`;
-                button.onclick = () => selectCategory(category);
-                container.appendChild(button);
-            });
-        }
-
-        function selectCategory(category) {
-            currentCategory = category;
-            renderFilters();
-            applyFilters();
-        }
-
-        function applyFilters() {
-            currentSearchTerm = document.getElementById('search-input').value.toLowerCase().trim();
-            currentSort = document.getElementById('sort-select').value;
-            
-            let filteredProducts = allProducts.filter(product => {
-                const categoryMatch = currentCategory === 'الكل' || product.category === currentCategory;
-                const searchMatch = !currentSearchTerm || 
-                                    product.name.toLowerCase().includes(currentSearchTerm) || 
-                                    product.description.toLowerCase().includes(currentSearchTerm);
-
-                return categoryMatch && searchMatch;
-            });
-            
-            filteredProducts.sort((a, b) => {
-                if (currentSort === 'name_asc') {
-                    return a.name.localeCompare(b.name, 'ar', { sensitivity: 'base' });
-                } else if (currentSort === 'name_desc') {
-                    return b.name.localeCompare(a.name, 'ar', { sensitivity: 'base' });
+            if (isNavVisible) {
+                navLinks.style.display = 'none';
+                navButtons.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navButtons.style.display = 'flex';
+                
+                // Adjust for mobile view
+                if (window.innerWidth <= 768) {
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '100%';
+                    navLinks.style.right = '0';
+                    navLinks.style.background = 'white';
+                    navLinks.style.width = '100%';
+                    navLinks.style.padding = '1rem';
+                    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                    
+                    navButtons.style.flexDirection = 'column';
+                    navButtons.style.position = 'absolute';
+                    navButtons.style.top = 'calc(100% + 180px)';
+                    navButtons.style.right = '0';
+                    navButtons.style.background = 'white';
+                    navButtons.style.width = '100%';
+                    navButtons.style.padding = '1rem';
+                    navButtons.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                    
+                    navLinks.querySelectorAll('li').forEach(li => {
+                        li.style.margin = '0.5rem 0';
+                    });
+                    
+                    navButtons.querySelector('.btn-outline').style.marginLeft = '0';
+                    navButtons.querySelector('.btn-outline').style.marginTop = '0.5rem';
                 }
-                return b.id - a.id; 
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    navLinks.style.display = 'none';
+                    navButtons.style.display = 'none';
+                }
             });
+        });
 
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لتواصلك معنا! سنرد على رسالتك في أقرب وقت ممكن.');
+            contactForm.reset();
+        });
 
-            renderProductCards(filteredProducts);
+        // Product Data and Functions
+        const WHATSAPP_NUMBER = '201091321859'; 
+        let allProducts = [];
+        let currentFilter = 'all';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const dataScript = document.getElementById('product-data').textContent;
+                allProducts = JSON.parse(dataScript);
+                renderProductCards();
+                setupFilterButtons();
+                setupModal();
+            } catch (e) {
+                console.error("Error parsing product data:", e);
+                document.getElementById('products-container').innerHTML = `<p class="text-red-600 col-span-full text-center text-xl font-bold">عذراً، حدث خطأ في تحميل بيانات المنتجات.</p>`;
+            }
+        });
+
+        function setupFilterButtons() {
+            const filterButtons = document.querySelectorAll('.filter-button');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    // Filter products
+                    currentFilter = this.getAttribute('data-filter');
+                    renderProductCards();
+                });
+            });
         }
 
-        function renderProductCards(products) {
-            const container = document.getElementById('product-list');
+        function renderProductCards() {
+            const container = document.getElementById('products-container');
             container.innerHTML = ''; 
             
-            if (products.length === 0) {
-                container.innerHTML = `<p class="text-xl text-center text-gray-500 col-span-full mt-12">لا توجد منتجات مطابقة لعملية البحث أو التصنيف.</p>`;
+            const filteredProducts = allProducts.filter(product => {
+                return currentFilter === 'all' || product.category === currentFilter;
+            });
+            
+            if (filteredProducts.length === 0) {
+                container.innerHTML = `<p class="text-gray-500 col-span-full text-center text-xl font-bold">لا توجد منتجات في هذا التصنيف.</p>`;
                 return;
             }
-
-            products.forEach(product => {
-                const fallbackImage = `https://placehold.co/600x400/155e75/ffffff?text=${encodeURIComponent('صورة غير متاحة')}`;
+            
+            filteredProducts.forEach(product => {
+                const fallbackImage = `https://placehold.co/600x400/7f1d1d/ffffff?text=${encodeURIComponent('صورة غير متاحة')}`;
                 const cardHtml = `
-                    <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col" onclick="openModal(${product.id})">
-                        <div class="h-56 overflow-hidden">
+                    <div class="product-card" data-id="${product.id}">
+                        <div class="product-image">
                             <img src="${product.imgSrc || fallbackImage}" 
                                  alt="${product.name}" 
-                                 class="w-full h-full object-cover object-center transition duration-500 ease-in-out transform hover:scale-105"
                                  onerror="this.onerror=null;this.src='${fallbackImage}';">
                         </div>
-                        <div class="p-4 flex flex-col flex-grow">
-                            <p class="font-bold text-xs text-teal-600 mb-1 tracking-wider uppercase">${product.category}</p>
-                            <h2 class="text-xl font-extrabold text-indigo-700 mb-3 line-clamp-2">${product.name}</h2>
-                            
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">${product.description}</p>
-                            <div class="flex mt-auto">
-                                <a href="${generateWhatsappLink(product.name)}" 
-                                   target="_blank" 
-                                   onclick="event.stopPropagation();"
-                                   class="flex-1 text-center py-2 rounded-lg font-bold bg-green-600 text-white hover:bg-green-700 transition duration-300 text-sm shadow-lg transform hover:scale-[0.99]">
-                                   اطلب عرض سعر
-                                </a>
+                        <div class="product-content">
+                            <span class="product-category">${product.category}</span>
+                            <h3>${product.name}</h3>
+                            <p>${product.description}</p>
+                            <div class="product-actions">
+                                <button class="btn btn-primary view-product" data-id="${product.id}">عرض التفاصيل</button>
                             </div>
                         </div>
                     </div>
                 `;
                 container.innerHTML += cardHtml;
             });
+            
+            // Add event listeners to view buttons
+            document.querySelectorAll('.view-product').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const productId = this.getAttribute('data-id');
+                    openProductModal(productId);
+                });
+            });
+            
+            // Add event listeners to product cards
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    openProductModal(productId);
+                });
+            });
+        }
+
+        function setupModal() {
+            const modal = document.getElementById('product-modal');
+            const closeButtons = document.querySelectorAll('#modal-close, #modal-close-btn');
+            
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+            });
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        function openProductModal(productId) {
+            const product = allProducts.find(p => p.id == productId);
+            if (!product) return;
+            
+            const modal = document.getElementById('product-modal');
+            const fallbackImage = `https://placehold.co/600x400/7f1d1d/ffffff?text=${encodeURIComponent('صورة غير متاحة')}`;
+            
+            document.getElementById('modal-image').src = product.imgSrc || fallbackImage;
+            document.getElementById('modal-image').alt = product.name;
+            document.getElementById('modal-category').textContent = product.category;
+            document.getElementById('modal-title').textContent = product.name;
+            document.getElementById('modal-description').textContent = product.description;
+            
+            const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`مرحباً، أرجو تزويدي بعرض سعر لكميات من منتج: *${product.name}*.`)}`;
+            document.getElementById('modal-whatsapp').href = whatsappLink;
+            
+            modal.style.display = 'flex';
         }
 
         function generateWhatsappLink(productName) {
-            // يستخدم رقم الواتساب المحدث في هذه الدالة
-            const message = `مرحباً، أرجو تزويدي بعرض سعر لكميات من منتج: *${productName}*. (رأيته في الكتالوج الاحترافي)`;
+            const message = `مرحباً، أرجو تزويدي بعرض سعر لكميات من منتج: *${productName}*.`;
             return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
         }
-        
-        function openModal(productId) {
-            const product = allProducts.find(p => p.id === productId);
-            const modal = document.getElementById('product-modal');
-            if (!product) return;
 
-            const fallbackImage = `https://placehold.co/600x400/155e75/ffffff?text=${encodeURIComponent('صورة غير متاحة')}`;
-            
-            // Set Modal Content
-            document.getElementById('modal-img').src = product.imgSrc || fallbackImage;
-            document.getElementById('modal-img').alt = product.name;
-            document.getElementById('modal-category').textContent = product.category;
-            document.getElementById('modal-name').textContent = product.name;
-            
-            document.getElementById('modal-description').textContent = product.description;
-            // يتم تحديث رابط الواتساب هنا أيضاً
-            document.getElementById('modal-whatsapp-link').href = generateWhatsappLink(product.name);
-
-            // Show Modal
-            modal.classList.remove('invisible', 'opacity-0');
-            modal.classList.add('visible');
-            document.getElementById('modal-content').style.transform = 'scale(1)';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('product-modal');
-            document.getElementById('modal-content').style.transform = 'scale(0.95)';
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('invisible');
-            }, 300); 
-        }
-
-        document.getElementById('product-modal').addEventListener('click', (e) => {
-            if (e.target.id === 'product-modal') {
-                closeModal();
-            }
-        });a
-        
-        function toggleMoreInfo() {
-            const content = document.getElementById('more-info-content');
-            const button = document.getElementById('toggle-info-btn');
-            content.classList.toggle('expanded');
-            if (content.classList.contains('expanded')) {
-                button.textContent = 'إخفاء التفاصيل';
-                button.classList.replace('bg-teal-600', 'bg-gray-500');
-                button.classList.add('shadow-inner');
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                navLinks.style.display = 'flex';
+                navButtons.style.display = 'flex';
+                navLinks.style.flexDirection = 'row';
+                navLinks.style.position = 'static';
+                navLinks.style.background = 'transparent';
+                navLinks.style.width = 'auto';
+                navLinks.style.padding = '0';
+                navLinks.style.boxShadow = 'none';
+                
+                navButtons.style.flexDirection = 'row';
+                navButtons.style.position = 'static';
+                navButtons.style.background = 'transparent';
+                navButtons.style.width = 'auto';
+                navButtons.style.padding = '0';
+                navButtons.style.boxShadow = 'none';
+                
+                navLinks.querySelectorAll('li').forEach(li => {
+                    li.style.margin = '0 0.8rem';
+                });
+                
+                navButtons.querySelector('.btn-outline').style.marginLeft = '0.8rem';
+                navButtons.querySelector('.btn-outline').style.marginTop = '0';
             } else {
-                button.textContent = 'من نحن؟ (لمعرفة خدماتنا)';
-                button.classList.replace('bg-gray-500', 'bg-teal-600');
-                button.classList.remove('shadow-inner');
+                navLinks.style.display = 'none';
+                navButtons.style.display = 'none';
             }
-        }
+        });
     </script>
 </body>
-</html>
-
+    </html>
