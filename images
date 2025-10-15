@@ -1,18 +1,122 @@
-بامية صغيرة one.jpg
-بامية كبيرة جدا  .jpg
-بامية كبيرة جدا .jpg
-بامية ممتازة .jpg
-بروكلي مجمد.jpg
-بسلة وجزر .jpg
-بطاطس مقلية 7x7 .jpg
-بطاطس مقليه 9x9 .jpg
-خضروات مشكلة .jpg
-ذرة حلوة مجمدة .jpg
-سبانخ مفرومة .jpg
-شرائح مانجو مجمدة .jpg
-فراولة مجمدة .jpg
-فاصولياء خضراء مجمدة .jpg
-فلفل كابيا .jpg
-قرنبيط مجمد.jpg
-ملوخية مفرومة .jpg
-مكعبات جزر مجمدة .jpg 
+#!/usr/bin/env bash
+set -euo pipefail
+# Usage: ./move_images_batch.sh [batch_size]
+BRANCH="organize/move-images"
+MAIN_BRANCH="main"
+BATCH_SIZE="${1:-6}"
+DEST_DIR="images"
+RENAMED_XL="بامية كبيرة جدا(XL).jpg"
+RENAMED_FALLBACK="بامية كبيرة جدا(2).jpg"
+DOUBLE_SPACE_SRC="بامية كبيرة جدا  .jpg"   # الملف ذو الفراغين (ينقل آخرًا)
+
+FILES=(
+"بامية صغيرة one.jpg"
+"بامية كبيرة جدا .jpg"    # سيعاد تسميته إلى (XL)
+"بامية ممتازة .jpg"
+"بروكلي مجمد.jpg"
+"بسلة وجزر .jpg"
+"بطاطس مقلية 7x7 .jpg"
+"بطاطس مقليه 9x9 .jpg"
+"ذرة حلوة مجمدة .jpg"
+"خضروات مشكلة .jpg"
+"سبانخ مفرومة .jpg"
+"شرائح مانجو مجمدة .jpg"
+"فاصولياء خضراء مجمدة .jpg"
+"فراولة مجمدة .jpg"
+"فلفل كابيا .jpg"
+"قرنبيط مجمد.jpg"
+"مكعبات جزر مجمدة .jpg"
+"ملوخية مفرومة .jpg"
+)
+
+# تحضير الفرع
+git fetch origin
+if git rev-parse --verify --quiet "refs/heads/$BRANCH" >/dev/null; then
+  git checkout "$BRANCH"
+else
+  # إنشاء/التحويل من main أو origin/main
+  if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+    git checkout -b "$BRANCH" "origin/$BRANCH"
+  else
+    git checkout -b "$BRANCH" "origin/$MAIN_BRANCH" || git checkout -b "$BRANCH" "$MAIN_BRANCH"
+  fi
+fi
+
+mkdir -p "$DEST_DIR"
+
+# نقل الملفات بالدفعات
+total=${#FILES[@]}
+i=0
+batch_num=1
+
+while [ $i -lt $total ]; do
+  batch_end=$((i + BATCH_SIZE))
+  if [ $batch_end -gt $total ]; then
+    batch_end=$total
+  fi
+  echo "=== معالجة الدفعة $batch_num: ملفات $((i+1)) إلى $batch_end من $total ==="
+  any_moved=false
+  for ((j=i; j<batch_end; j++)); do
+    src="${FILES[j]}"
+    if [ "$src" = "بامية كبيرة جدا .jpg" ]; then
+      dst="$DEST_DIR/$RENAMED_XL"
+    else
+      dst="$DEST_DIR/$src"
+    fi
+    if [ -e "$src" ]; then
+      git mv "$src" "$dst"
+      echo "نُقل: \"$src\" -> \"$dst\""
+      any_moved=true
+    else
+      echo "تحذير: الملف غير موجود محلياً، تم تخطي: \"$src\""
+    fi
+  done
+
+  if [ "$any_moved" = true ]; then
+    git add -A
+    git commit -m "chore: move images batch $batch_num ($((i+1))..$batch_end) and rename duplicate to (XL)"
+    git push -u origin "$BRANCH"
+    echo "تمّ عمل push للدفعة $batch_num."
+  else
+    echo "لا تغييرات في الدفعة $batch_num، لن يتم عمل commit."
+  fi
+
+  i=$batch_end
+  batch_num=$((batch_num + 1))
+done
+
+# الآن نحاول نقل الملف ذو الفراغين كآخر خطوة
+echo "=== محاولة نقل الملف الأخير (ذو الفراغين): $DOUBLE_SPACE_SRC ==="
+if [ -e "$DOUBLE_SPACE_SRC" ]; then
+  git mv "$DOUBLE_SPACE_SRC" "$DEST_DIR/$DOUBLE_SPACE_SRC" || true
+  # إذا فشل git mv لأسباب غريبة، حاول إعادة التسمية ثم النقل
+  if git status --porcelain | grep -q .; then
+    git add -A
+    git commit -m "chore: move last duplicate file with double-space"
+    if git push -u origin "$BRANCH"; then
+      echo "تم نقل الملف ذو الفراغين بنجاح."
+      exit 0
+    else
+      echo "حصل فشل عند push للملف ذو الفراغين. سنحاول إعادة تسميته ورفع مرة أخرى."
+      # استرجاع الحالة إلى قبل النقل (محلياً)
+      git reset --hard HEAD~1 || true
+    fi
+  fi
+
+  # fallback: إعادة تسمية الملف ذو الفراغين إلى اسم آمن ثم نقله
+  echo "إعادة تسمية الملف ذو الفراغين إلى اسم آمن: $RENAMED_FALLBACK"
+  if [ -e "$DOUBLE_SPACE_SRC" ]; then
+    git mv "$DOUBLE_SPACE_SRC" "$RENAMED_FALLBACK"
+    git mv "$RENAMED_FALLBACK" "$DEST_DIR/$RENAMED_FALLBACK"
+    git add -A
+    git commit -m "chore: move last duplicate file and rename to safe name"
+    git push -u origin "$BRANCH"
+    echo "تم نقل الملف الأخير بعد إعادة تسميته إلى $RENAMED_FALLBACK."
+  else
+    echo "تعذر العثور على الملف ذو الفراغين بعد محاولة النقل، تم التخطي."
+  fi
+else
+  echo "الملف ذو الفراغين غير موجود محلياً، لا حاجة للنقل."
+fi
+
+echo "انتهت العملية. افتح PR من $BRANCH إلى $MAIN_BRANCH لمراجعة ودمج."
